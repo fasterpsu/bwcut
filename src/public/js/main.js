@@ -826,11 +826,23 @@ function updateInspectorColors(top, bot) {
   const swBot = document.getElementById("swatchBotColor");
   const txtTop = document.getElementById("swatchTopColorText");
   const txtBot = document.getElementById("swatchBotColorText");
+  const inTop = document.getElementById("qcTopColorInput");
+  const inBot = document.getElementById("qcBotColorInput");
 
   if (swTop) swTop.style.background = top;
   if (swBot) swBot.style.background = bot;
   if (txtTop) txtTop.textContent = top;
   if (txtBot) txtBot.textContent = bot;
+  if (inTop && top && top.startsWith("#")) inTop.value = top;
+  if (inBot && bot && bot.startsWith("#")) inBot.value = bot;
+
+  // Highlight matching swatch preset (if any)
+  document.querySelectorAll("#sw .sw").forEach((el) => {
+    const elTop = el.dataset.top || "";
+    const elBot = el.dataset.bot || "";
+    const match = elTop.toUpperCase() === (top || "").toUpperCase() && elBot.toUpperCase() === (bot || "").toUpperCase();
+    el.classList.toggle("on", match);
+  });
 }
 
 // ─── TIMELINE ENGINE (WAVEFORM, AUDIBLE SEGMENTS, MARKS, SCRUBBING) ──────────
@@ -1806,9 +1818,12 @@ function initSwatches() {
   SWATCH_PRESETS.forEach(([top, bot], i) => {
     const sw = document.createElement("div");
     sw.className = `sw ${i === 0 ? "on" : ""}`;
+    sw.dataset.top = top;
+    sw.dataset.bot = bot;
+    sw.title = `เลือกสี [${top} / ${bot}] สำหรับคลิปนี้`;
     sw.innerHTML = `<i style="background:${top}"></i><i style="background:${bot}"></i>`;
     sw.addEventListener("click", () => {
-      document.querySelectorAll(".sw").forEach((el) => el.classList.remove("on"));
+      document.querySelectorAll("#sw .sw").forEach((el) => el.classList.remove("on"));
       sw.classList.add("on");
       const clip = clips[currentClipIndex];
       if (clip) {
@@ -1821,6 +1836,40 @@ function initSwatches() {
     });
     swContainer.appendChild(sw);
   });
+
+  // Custom Color Pickers in Inspector
+  const btnTop = document.getElementById("btnPickTopColor");
+  const inTop = document.getElementById("qcTopColorInput");
+  const btnBot = document.getElementById("btnPickBotColor");
+  const inBot = document.getElementById("qcBotColorInput");
+
+  if (btnTop && inTop) {
+    btnTop.onclick = () => inTop.click();
+    inTop.oninput = (e) => {
+      const hex = e.target.value.toUpperCase();
+      const clip = clips[currentClipIndex];
+      if (clip) {
+        clip.topHeadlineColor = hex;
+        updateVideoOverlay();
+        updateInspectorColors(hex, clip.bottomHeadlineColor || "#FFFFFF");
+        saveClipChangesToServer(clip);
+      }
+    };
+  }
+
+  if (btnBot && inBot) {
+    btnBot.onclick = () => inBot.click();
+    inBot.oninput = (e) => {
+      const hex = e.target.value.toUpperCase();
+      const clip = clips[currentClipIndex];
+      if (clip) {
+        clip.bottomHeadlineColor = hex;
+        updateVideoOverlay();
+        updateInspectorColors(clip.topHeadlineColor || "#FFE600", hex);
+        saveClipChangesToServer(clip);
+      }
+    };
+  }
 }
 
 function initEventBindings() {

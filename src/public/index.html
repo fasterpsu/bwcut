@@ -587,11 +587,21 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
               <div class="field"><span class="field-label" id="lblLineSpacing">ระยะห่างบรรทัด · <span id="qcLineSpacingVal">68 px</span></span><input type="range" id="qcLineSpacingSlider" min="20" max="200" value="68" style="--p:27%"></div>
             </div>
             <div class="sec">
-              <div class="sec-head"><span class="sec-title">ชุดสี</span></div>
+              <div class="sec-head"><span class="sec-title">ชุดสี</span><small style="color:var(--c-text-3);font-size:11px">คลิกตลับสีหรือกล่องสีเพื่อปรับ</small></div>
               <div class="swatches" id="sw"></div>
               <div class="color-row">
-                <div class="color-pick"><i id="swatchTopColor" style="background:#FFE600"></i><span id="swatchTopColorText">#FFE600</span><small class="helper" style="margin-left:auto">บน</small></div>
-                <div class="color-pick"><i id="swatchBotColor" style="background:#FFFFFF"></i><span id="swatchBotColorText">#FFFFFF</span><small class="helper" style="margin-left:auto">ล่าง</small></div>
+                <div class="color-pick" id="btnPickTopColor" style="cursor:pointer;" title="คลิกเพื่อเลือกสีพาดหัวบน">
+                  <input type="color" id="qcTopColorInput" value="#FFE600" style="opacity:0;position:absolute;pointer-events:none;width:0;height:0;">
+                  <i id="swatchTopColor" style="background:#FFE600"></i>
+                  <span id="swatchTopColorText">#FFE600</span>
+                  <small class="helper" style="margin-left:auto">บน 🎨</small>
+                </div>
+                <div class="color-pick" id="btnPickBotColor" style="cursor:pointer;" title="คลิกเพื่อเลือกสีพาดหัวล่าง">
+                  <input type="color" id="qcBotColorInput" value="#FFFFFF" style="opacity:0;position:absolute;pointer-events:none;width:0;height:0;">
+                  <i id="swatchBotColor" style="background:#FFFFFF"></i>
+                  <span id="swatchBotColorText">#FFFFFF</span>
+                  <small class="helper" style="margin-left:auto">ล่าง 🎨</small>
+                </div>
               </div>
             </div>
           </div>
@@ -719,7 +729,24 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
         <div class="field"><span class="field-label">โฟลเดอร์ผลลัพธ์</span><input class="input" id="setOutputDir" value="./rendered" placeholder="./rendered"></div>
       </div>
       <div class="settings-tab-pane" data-pane="typo" style="display:none;">
-        <div class="field"><span class="field-label">ฟอนต์เริ่มต้น</span><input class="input" id="setDefaultFont" value="Prompt-Bold"></div>
+        <div class="field">
+          <span class="field-label">ฟอนต์เริ่มต้น</span>
+          <select class="input" id="setDefaultFont">
+            <option value="Prompt-Bold">Prompt Bold (ค่าเริ่มต้นยอดนิยม)</option>
+            <option value="Kanit-Regular">Kanit Regular</option>
+            <option value="Kanit-MediumItalic">Kanit Medium Italic</option>
+            <option value="Mitr-Bold">Mitr Bold</option>
+            <option value="Mitr-Regular">Mitr Regular</option>
+            <option value="NotoSansThai-Bold">Noto Sans Thai Bold</option>
+            <option value="Athiti-Regular">Athiti Regular</option>
+            <option value="Fahkwang-Medium">Fahkwang Medium</option>
+            <option value="Mali-Medium">Mali Medium</option>
+            <option value="Niramit-Medium">Niramit Medium</option>
+            <option value="Pattaya-Regular">Pattaya Regular</option>
+            <option value="Sriracha-Regular">Sriracha Regular</option>
+            <option value="none">ไม่ใส่ข้อความพาดหัว</option>
+          </select>
+        </div>
         <div class="row"><div class="field" style="flex:1"><span class="field-label">ขนาดบน (pt)</span><input class="input" id="setTopFontSize" type="number" value="13"></div><div class="field" style="flex:1"><span class="field-label">ขนาดล่าง (pt)</span><input class="input" id="setBottomFontSize" type="number" value="13"></div></div>
         
         <div style="border-top:1px solid var(--c-outline-variant);margin:var(--sp-4) 0"></div>
@@ -770,7 +797,17 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
         <div class="field"><span class="field-label">ซูมสุ่ม</span><input class="input" id="setZoomLevels" value="1.0, 1.2, 1.3"></div>
       </div>
       <div class="settings-tab-pane" data-pane="storage" style="display:none;">
-        <div class="field"><span class="field-label">ล้างแคช</span><button class="btn btn-outlined" id="btnClearTempAction" style="color:var(--c-danger)"><span class="ms">delete</span>ลบไฟล์แคชทั้งหมด</button></div>
+        <div class="field" style="margin-bottom:var(--sp-4);">
+          <span class="field-label">ล้างแคช</span>
+          <button class="btn btn-outlined" id="btnClearTempAction" style="color:var(--c-danger)"><span class="ms">delete</span>ลบไฟล์แคชทั้งหมด</button>
+        </div>
+        <div style="border-top:1px solid var(--c-outline-variant);margin:var(--sp-4) 0"></div>
+        <div class="field">
+          <span class="field-label" style="color:var(--c-danger);">ถอนการติดตั้ง BWCut Studio</span>
+          <small style="color:var(--c-text-2);margin-bottom:8px;line-height:1.4;">
+            หากไม่ต้องการใช้งานแล้ว สามารถดับเบิลคลิกไฟล์ <code>Uninstall-BWCut.bat</code> ในโฟลเดอร์โปรแกรมเพื่อลบไอคอน Desktop และล้างข้อมูลทั้งหมดได้ทันที
+          </small>
+        </div>
       </div>
       <div class="settings-tab-pane" data-pane="update" style="display:none;">
         <div style="background:var(--c-surface-container-high);border:1px solid var(--border-default);border-radius:12px;padding:16px;margin-bottom:16px;">
