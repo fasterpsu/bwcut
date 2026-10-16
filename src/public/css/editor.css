@@ -1,0 +1,599 @@
+/* ==========================================================================
+   BWCut — editor.css
+   Editor 3-Zone Workspace: Filmstrip (Left), Stage (Center), Inspector (Right)
+   ========================================================================== */
+
+#view-editor {
+  display: none;
+  grid-template-columns: var(--filmstrip-w) 1fr var(--inspector-w);
+  grid-template-rows: 1fr var(--timeline-h);
+  grid-template-areas:
+    "film stage insp"
+    "tl   tl    insp";
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--c-surface-stage);
+}
+
+#view-editor.active {
+  display: grid;
+}
+
+/* ================= 1. Filmstrip (Left 248px) ================= */
+.film {
+  grid-area: film;
+  background-color: var(--c-surface);
+  border-right: 1px solid var(--c-outline-variant);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  user-select: none;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-3) var(--sp-2) var(--sp-3) var(--sp-4);
+  font: var(--t-title-s);
+  min-height: 52px;
+  border-bottom: 1px solid var(--c-outline-variant);
+}
+
+.panel-head small {
+  font: var(--t-body-s);
+  color: var(--c-text-3);
+  margin-left: 6px;
+}
+
+.film-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--sp-2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.film-item {
+  display: flex;
+  gap: var(--sp-3);
+  padding: 6px var(--sp-2);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  align-items: center;
+  transition: background-color var(--dur-fast);
+}
+
+.film-item:hover {
+  background-color: var(--c-state-hover);
+}
+
+.film-item.active {
+  background-color: var(--c-primary-container);
+}
+
+.film-item .idx {
+  font: var(--t-mono-s);
+  color: var(--c-text-3);
+  width: 22px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.film-item .th {
+  width: 36px;
+  height: 64px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--g-grey-800);
+}
+
+.film-item .th img,
+.film-item .th .ph {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.film-item .info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.film-item .nm {
+  font: var(--t-label-l);
+  color: var(--c-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.film-item.active .nm {
+  color: var(--c-on-primary-container);
+  font-weight: 500;
+}
+
+/* ================= 2. Stage (Center Video Preview) ================= */
+.stage {
+  grid-area: stage;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--c-surface-stage);
+  min-height: 0;
+  min-width: 0;
+  position: relative;
+}
+
+.stage-head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  min-height: 52px;
+  background-color: var(--c-surface);
+  border-bottom: 1px solid var(--c-outline-variant);
+}
+
+.stage-head .nm {
+  font: var(--t-title-m);
+  color: var(--c-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 480px;
+}
+
+.saved {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font: var(--t-label-m);
+  color: var(--c-text-3);
+  margin-left: auto;
+  transition: opacity var(--dur-base);
+}
+
+.stage-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: var(--sp-3) var(--sp-4);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 9:16 Video Frame */
+.video-frame {
+  height: 100%;
+  max-height: 560px;
+  aspect-ratio: 9 / 16;
+  border-radius: var(--r-md);
+  background-color: #000000;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--e-2);
+}
+
+.video-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Dynamic Headline Overlay on Stage */
+.stage-headline-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ov-l1, .ov-l2 {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  text-align: center;
+  font-family: "Prompt-Bold", "Prompt", sans-serif;
+  font-weight: 700;
+  line-height: 1.25;
+  text-shadow: 0 0 4px #000, 0 0 4px #000, 0 0 2px #000;
+  transition: opacity 120ms;
+}
+
+.ov-l1 {
+  top: 15.75%;
+  color: #FFE600;
+}
+
+.ov-l2 {
+  top: calc(15.75% + 3.54%);
+  color: #ffffff;
+}
+
+.ov-cta {
+  position: absolute;
+  bottom: 12%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 38px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+  transition: opacity 120ms;
+}
+
+/* Jump-Cut Floating Toast Badge */
+.jump-toast {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(32, 33, 36, 0.88);
+  color: #ffffff;
+  font: var(--t-label-m);
+  padding: 6px 14px;
+  border-radius: var(--r-full);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  box-shadow: var(--e-1);
+  pointer-events: none;
+  animation: fadeIn var(--dur-fast);
+  z-index: 10;
+}
+
+/* Video Transport Controls Bar */
+.transport {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-4);
+  background-color: var(--c-surface);
+  border-top: 1px solid var(--c-outline-variant);
+  position: relative;
+  min-height: 56px;
+  user-select: none;
+}
+
+.play-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--c-primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--e-1);
+  transition: background-color var(--dur-fast), transform var(--dur-fast);
+}
+
+.play-btn:hover {
+  background-color: var(--c-primary-hover);
+  transform: scale(1.05);
+}
+
+.play-btn .ms {
+  font-size: 28px;
+}
+
+.transport .time {
+  font: var(--t-mono-m);
+  color: var(--c-text-2);
+  position: absolute;
+  left: var(--sp-4);
+}
+
+.transport .time b {
+  color: var(--c-text);
+  font-weight: 600;
+}
+
+.transport .chip {
+  position: absolute;
+  right: var(--sp-4);
+}
+
+/* ================= 3. Inspector (Right 380px) ================= */
+.insp {
+  grid-area: insp;
+  background-color: var(--c-surface);
+  border-left: 1px solid var(--c-outline-variant);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  user-select: none;
+}
+
+.nav-clip {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nav-clip span {
+  font: var(--t-mono-s);
+  color: var(--c-text-2);
+  padding: 0 6px;
+}
+
+/* M3 Tabs */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--c-outline-variant);
+  padding: 0 var(--sp-2);
+  background-color: var(--c-surface);
+}
+
+.tab {
+  flex: 1;
+  height: 48px;
+  border: none;
+  background: none;
+  font: var(--t-label-l);
+  color: var(--c-text-2);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  outline: none;
+  transition: color var(--dur-fast), background-color var(--dur-fast);
+}
+
+.tab:hover {
+  background-color: var(--c-state-hover);
+}
+
+.tab.on {
+  color: var(--c-primary);
+  font-weight: 500;
+}
+
+.tab.on::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  right: 16px;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background-color: var(--c-primary);
+}
+
+/* Inspector Body & Tabpanes */
+.insp-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--sp-5);
+}
+
+.tabpane {
+  display: none;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+
+.tabpane.on {
+  display: flex;
+}
+
+.sec {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.sec-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 32px;
+}
+
+.sec-title {
+  font: var(--t-title-s);
+  color: var(--c-text);
+  font-weight: 600;
+}
+
+.row {
+  display: flex;
+  gap: var(--sp-2);
+  align-items: center;
+}
+
+.emoji-in {
+  width: 52px;
+  text-align: center;
+  font-size: 18px;
+  padding: 0;
+}
+
+/* List Row with Switch */
+.list-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--c-outline-variant);
+}
+
+.list-row:last-child {
+  border-bottom: none;
+}
+
+.list-row .txt {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.list-row .txt b {
+  font: var(--t-body-l);
+  font-weight: 500;
+}
+
+.list-row .txt small {
+  font: var(--t-body-s);
+  color: var(--c-text-3);
+}
+
+.sub-opts {
+  display: flex;
+  gap: var(--sp-3);
+  padding: var(--sp-2) 0 var(--sp-3);
+}
+
+/* Font List in Inspector */
+.font-list {
+  border: 1px solid var(--c-outline);
+  border-radius: var(--r-sm);
+  max-height: 220px;
+  overflow-y: auto;
+  background-color: var(--c-surface);
+}
+
+.font-opt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--c-outline-variant);
+  transition: background-color var(--dur-fast);
+}
+
+.font-opt:last-child {
+  border-bottom: none;
+}
+
+.font-opt:hover {
+  background-color: var(--c-state-hover);
+}
+
+.font-opt.on {
+  background-color: var(--c-primary-container);
+}
+
+.font-opt .pv {
+  font-size: 17px;
+  color: var(--c-text);
+}
+
+.font-opt small {
+  font: var(--t-body-s);
+  color: var(--c-text-3);
+}
+
+/* Color Presets Swatches Grid */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--sp-2);
+}
+
+.sw {
+  height: 40px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--c-outline);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #3c4043;
+  padding: 4px;
+  gap: 3px;
+  transition: transform var(--dur-fast);
+}
+
+.sw:hover {
+  transform: scale(1.04);
+}
+
+.sw i {
+  flex: 1;
+  border-radius: 2px;
+}
+
+.sw.on {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 2px;
+}
+
+.color-row {
+  display: flex;
+  gap: var(--sp-3);
+}
+
+.color-pick {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  height: 40px;
+  border: 1px solid var(--c-outline);
+  border-radius: var(--r-sm);
+  padding: 0 var(--sp-2);
+  background-color: var(--c-surface);
+  position: relative;
+  cursor: pointer;
+}
+
+.color-pick input[type="color"] {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.color-pick i {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid var(--c-outline);
+}
+
+.color-pick span {
+  font: var(--t-mono-s);
+  color: var(--c-text);
+}
+
+/* Sticky Inspector Footer */
+.insp-foot {
+  display: flex;
+  gap: var(--sp-2);
+  padding: var(--sp-4) var(--sp-5);
+  border-top: 1px solid var(--c-outline-variant);
+  background-color: var(--c-surface);
+}
+
+.insp-foot .btn-filled {
+  flex: 1;
+}
+
+.insp-foot kbd {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}

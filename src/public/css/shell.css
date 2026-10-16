@@ -1,0 +1,208 @@
+/* ==========================================================================
+   BWCut — shell.css
+   App Shell Layout: Top App Bar, Navigation Rail, Views Container
+   ========================================================================== */
+
+.app {
+  display: grid;
+  grid-template-columns: var(--rail-w) 1fr;
+  grid-template-rows: var(--topbar-h) 1fr;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: var(--c-bg);
+}
+
+/* ================= 1. Top App Bar ================= */
+.topbar {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: 0 var(--sp-4) 0 var(--sp-6);
+  background-color: var(--c-surface);
+  border-bottom: 1px solid var(--c-outline-variant);
+  z-index: 100;
+  user-select: none;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: 500 20px/1 var(--font-ui);
+  color: var(--c-text-2);
+  min-width: calc(var(--rail-w) + 80px);
+  cursor: pointer;
+}
+
+.logo-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  padding: 5px;
+  background-color: var(--c-surface-dim);
+}
+
+.logo-mark i {
+  border-radius: 2px;
+}
+
+.logo b {
+  color: var(--c-text);
+  font-weight: 600;
+}
+
+/* Folder Navigation Bar */
+.folder-bar {
+  flex: 1;
+  max-width: 720px;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  background-color: var(--c-surface-dim);
+  border-radius: var(--r-full);
+  padding: 0 var(--sp-1) 0 var(--sp-4);
+  gap: var(--sp-2);
+  transition: background-color var(--dur-base), box-shadow var(--dur-base);
+}
+
+.folder-bar:focus-within {
+  background-color: var(--c-surface);
+  box-shadow: var(--e-1);
+}
+
+.folder-bar input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font: var(--t-body-m);
+  color: var(--c-text);
+}
+
+.folder-bar .ms {
+  color: var(--c-text-2);
+}
+
+.top-spacer {
+  flex: 1;
+}
+
+/* Topbar Active Render Pill */
+.render-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  height: 36px;
+  padding: 0 var(--sp-4) 0 var(--sp-3);
+  border-radius: var(--r-full);
+  background-color: var(--c-primary-container);
+  color: var(--c-on-primary-container);
+  font: var(--t-label-m);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color var(--dur-fast), box-shadow var(--dur-fast);
+}
+
+.render-pill:hover {
+  background-color: var(--g-blue-100);
+  box-shadow: var(--e-1);
+}
+
+.render-pill .mini {
+  width: 64px;
+  height: 4px;
+  border-radius: 4px;
+  background-color: var(--g-blue-200);
+  overflow: hidden;
+}
+
+.render-pill .mini i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background-color: var(--c-primary);
+  transition: width var(--dur-base);
+}
+
+/* ================= 2. Navigation Rail ================= */
+.rail {
+  background-color: var(--c-surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--sp-3);
+  gap: var(--sp-3);
+  border-right: 1px solid var(--c-outline-variant);
+  z-index: 90;
+  user-select: none;
+}
+
+.rail-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  font: var(--t-label-m);
+  color: var(--c-text-2);
+  position: relative;
+  width: 100%;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0;
+}
+
+.rail-item .pill {
+  width: 56px;
+  height: 32px;
+  border-radius: var(--r-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--dur-base);
+}
+
+.rail-item:hover .pill {
+  background-color: var(--c-state-hover);
+}
+
+.rail-item.active {
+  color: var(--c-text);
+  font-weight: 500;
+}
+
+.rail-item.active .pill {
+  background-color: var(--c-primary-container);
+  color: var(--c-on-primary-container);
+}
+
+.rail-item.active .ms {
+  font-variation-settings: "FILL" 1, "wght" 500, "GRAD" 0, "opsz" 20;
+}
+
+/* ================= 3. Main Views Container ================= */
+main.main-viewport {
+  display: flex;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.view {
+  display: none;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.view.active {
+  display: flex;
+}

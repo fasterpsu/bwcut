@@ -1,0 +1,162 @@
+/* ==========================================================================
+   BWCut Design Tokens — v1.0 (LOCKED)
+   Google Material-inspired, light theme. DO NOT invent new colors/sizes.
+   Every component MUST consume these variables (no hardcoded hex in components).
+   ========================================================================== */
+
+:root {
+  /* ---------- 1. Brand palette (raw) ---------- */
+  --g-blue-50:  #e8f0fe;
+  --g-blue-100: #d2e3fc;
+  --g-blue-200: #aecbfa;
+  --g-blue-600: #1a73e8;   /* Google Blue — PRIMARY */
+  --g-blue-700: #1967d2;
+  --g-blue-800: #185abc;
+  --g-blue-900: #174ea6;
+
+  --g-red-50:  #fce8e6;
+  --g-red-100: #fad2cf;
+  --g-red-600: #ea4335;    /* Google Red — CUT / REMOVED / DANGER */
+  --g-red-700: #d93025;
+  --g-red-800: #c5221f;
+
+  --g-yellow-50:  #fef7e0;
+  --g-yellow-100: #feefc3;
+  --g-yellow-400: #fcc934;
+  --g-yellow-500: #fbbc05; /* Google Yellow — HEADLINE / WARNING */
+  --g-yellow-800: #b06000; /* text on yellow surfaces */
+
+  --g-green-50:  #e6f4ea;
+  --g-green-100: #ceead6;
+  --g-green-600: #34a853;  /* Google Green — KEPT SPEECH / APPROVED */
+  --g-green-700: #1e8e3e;
+  --g-green-800: #188038;
+
+  --g-grey-0:   #ffffff;
+  --g-grey-50:  #f8f9fa;
+  --g-grey-100: #f1f3f4;
+  --g-grey-200: #e8eaed;
+  --g-grey-300: #dadce0;
+  --g-grey-400: #bdc1c6;
+  --g-grey-500: #9aa0a6;
+  --g-grey-600: #80868b;
+  --g-grey-700: #5f6368;
+  --g-grey-800: #3c4043;
+  --g-grey-900: #202124;
+
+  /* ---------- 2. Semantic roles (USE THESE in components) ---------- */
+  --c-bg:                 var(--g-grey-50);   /* app background */
+  --c-surface:            var(--g-grey-0);    /* cards, panels */
+  --c-surface-dim:        var(--g-grey-100);  /* inputs, track bg, hover */
+  --c-surface-stage:      var(--g-grey-200);  /* video stage backdrop */
+  --c-outline:            var(--g-grey-300);
+  --c-outline-variant:    var(--g-grey-200);
+
+  --c-text:               var(--g-grey-900);
+  --c-text-2:             var(--g-grey-700);
+  --c-text-3:             var(--g-grey-600);
+  --c-text-disabled:      var(--g-grey-500);
+
+  --c-primary:            var(--g-blue-600);
+  --c-primary-hover:      var(--g-blue-700);
+  --c-on-primary:         #ffffff;
+  --c-primary-container:  var(--g-blue-50);
+  --c-on-primary-container: var(--g-blue-900);
+
+  --c-danger:             var(--g-red-600);
+  --c-danger-container:   var(--g-red-50);
+  --c-on-danger-container: var(--g-red-800);
+
+  --c-success:            var(--g-green-600);
+  --c-success-container:  var(--g-green-50);
+  --c-on-success-container: var(--g-green-800);
+
+  --c-warning:            var(--g-yellow-500);
+  --c-warning-container:  var(--g-yellow-50);
+  --c-on-warning-container: var(--g-yellow-800);
+
+  --c-focus-ring:         rgba(26, 115, 232, 0.40);
+  --c-state-hover:        rgba(32, 33, 36, 0.06);
+  --c-state-pressed:      rgba(32, 33, 36, 0.10);
+  --c-scrim:              rgba(32, 33, 36, 0.45);
+
+  /* ---------- 3. Timeline roles ---------- */
+  --tl-bg:            var(--g-grey-100);
+  --tl-kept:          rgba(52, 168, 83, 0.85);   /* green speech segments */
+  --tl-kept-border:   var(--g-green-700);
+  --tl-removed:       rgba(234, 67, 53, 0.10);   /* red hatched gaps */
+  --tl-removed-line:  rgba(234, 67, 53, 0.35);
+  --tl-headline:      var(--g-yellow-500);
+  --tl-headline-bg:   var(--g-yellow-50);
+  --tl-selection:     rgba(26, 115, 232, 0.16);  /* In/Out range (neutral) */
+  --tl-selection-edge: var(--g-blue-600);
+  --tl-playhead:      var(--g-grey-900);
+  --tl-waveform:      rgba(95, 99, 104, 0.35);
+
+  /* ---------- 4. Status mapping (clip.status → color) ---------- */
+  --st-unprocessed:   var(--g-grey-500);
+  --st-analyzing:     var(--g-blue-600);
+  --st-ready:         var(--g-yellow-500);
+  --st-approved:      var(--g-green-600);
+  --st-rendering:     var(--g-blue-600);
+  --st-completed:     var(--g-blue-900);
+  --st-error:         var(--g-red-600);
+
+  /* ---------- 5. Typography ---------- */
+  --font-ui:   "Google Sans", "Google Sans Text", "Kanit", "Noto Sans Thai", Roboto, system-ui, sans-serif;
+  --font-thai: "Kanit", "Noto Sans Thai", "Google Sans", sans-serif;
+  --font-mono: "Roboto Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  /* size / line-height / weight */
+  --t-display:  500 28px/36px var(--font-ui);
+  --t-title-l:  500 22px/28px var(--font-ui);
+  --t-title-m:  500 16px/24px var(--font-ui);
+  --t-title-s:  500 14px/20px var(--font-ui);
+  --t-body-l:   400 16px/24px var(--font-ui);
+  --t-body-m:   400 14px/20px var(--font-ui);
+  --t-body-s:   400 12px/16px var(--font-ui);
+  --t-label-l:  500 14px/20px var(--font-ui);
+  --t-label-m:  500 12px/16px var(--font-ui);
+  --t-label-s:  500 11px/16px var(--font-ui);
+  --t-mono-m:   500 13px/20px var(--font-mono);
+  --t-mono-s:   500 11px/16px var(--font-mono);
+
+  /* ---------- 6. Spacing (4px grid) ---------- */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 24px; --sp-8: 32px; --sp-10: 40px; --sp-12: 48px;
+
+  /* ---------- 7. Radius ---------- */
+  --r-xs: 4px;   /* kbd, tiny tags */
+  --r-sm: 8px;   /* inputs, chips, list items */
+  --r-md: 12px;  /* cards, video frame */
+  --r-lg: 16px;  /* panels, dialogs */
+  --r-xl: 28px;  /* dialogs (M3), FAB */
+  --r-full: 999px;
+
+  /* ---------- 8. Elevation (Google classic shadows) ---------- */
+  --e-0: none;
+  --e-1: 0 1px 2px rgba(60,64,67,.30), 0 1px 3px 1px rgba(60,64,67,.15);
+  --e-2: 0 1px 2px rgba(60,64,67,.30), 0 2px 6px 2px rgba(60,64,67,.15);
+  --e-3: 0 4px 8px 3px rgba(60,64,67,.15), 0 1px 3px rgba(60,64,67,.30);
+  --e-4: 0 6px 10px 4px rgba(60,64,67,.15), 0 2px 3px rgba(60,64,67,.30);
+
+  /* ---------- 9. Motion ---------- */
+  --ease-standard:   cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.3, 0, 0, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 300ms;
+
+  /* ---------- 10. Layout constants ---------- */
+  --topbar-h:      56px;
+  --rail-w:        80px;
+  --filmstrip-w:   248px;
+  --inspector-w:   380px;
+  --timeline-h:    232px;
+  --control-h:     40px;   /* buttons / inputs default */
+  --control-h-sm:  32px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 0ms; --dur-base: 0ms; --dur-slow: 0ms; }
+}

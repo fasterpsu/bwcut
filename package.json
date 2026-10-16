@@ -1,0 +1,29 @@
+{
+  "name": "bwcut",
+  "version": "1.0.0",
+  "description": "BWCut Studio — Pro AI Video Workstation by fasterpsu (BW OS)",
+  "author": "fasterpsu (BW OS)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fasterpsu/bwcut.git"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "dev": "tsx watch src/server.ts"
+  },
+  "dependencies": {
+    "@remotion/renderer": "^4.0.448",
+    "assemblyai": "^4.29.0",
+    "remotion": "^4.0.448",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "esbuild": "^0.28.2",
+    "pkg": "^5.8.1",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0"
+  }
+}

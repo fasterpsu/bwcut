@@ -1,0 +1,167 @@
+/* ==========================================================================
+   BWCut Studio Design Tokens — v2.0
+   Creator: fasterpsu (BW OS)
+   Theme: Pro Studio Dark / Flame Amber, Ubuntu Orange & Canonical Aubergine
+   ========================================================================== */
+
+:root {
+  /* ---------- 1. BWCut & BW OS Signature Brand Palette ---------- */
+  --bw-amber-50:   #fff7ed;
+  --bw-amber-100:  #ffedd5;
+  --bw-amber-400:  #fb923c;
+  --bw-amber-500:  #f97316;
+  --bw-amber-600:  #ff6b00;  /* BWCut Signature Flame Amber — PRIMARY */
+  --bw-amber-700:  #e95420;  /* Ubuntu / BW OS Flame */
+  --bw-amber-800:  #c2410c;
+
+  --bw-purple-600: #77216f;  /* Canonical Aubergine (BW OS) */
+  --bw-purple-500: #9333ea;  /* Cyber Violet */
+  --bw-purple-700: #581c87;
+
+  --bw-cyan-400:   #22d3ee;
+  --bw-cyan-500:   #00f0ff;  /* Laser Cyan Accent */
+  --bw-cyan-600:   #0891b2;
+
+  --bw-red-500:    #ef4444;  /* Cut / Deleted / Danger */
+  --bw-red-600:    #dc2626;
+
+  --bw-green-500:  #10b981;  /* Kept Speech / Success */
+  --bw-green-600:  #059669;
+
+  --bw-yellow-400: #facc15;  /* Headline Gold / Warning */
+  --bw-yellow-500: #eab308;
+
+  /* Carbon & Obsidian Scales */
+  --bw-dark-950:   #07080b;  /* Stage Backdrop */
+  --bw-dark-900:   #0b0d13;  /* App Background */
+  --bw-dark-850:   #131722;  /* Panels & Cards */
+  --bw-dark-800:   #1b202e;  /* Inputs, Sub-panels, Hovers */
+  --bw-dark-700:   #252b3d;  /* Elevated Surfaces */
+  --bw-dark-600:   #343c52;  /* Borders */
+  --bw-dark-500:   #4b5563;  /* Disabled */
+  --bw-dark-400:   #6b7280;  /* Muted Text */
+  --bw-dark-300:   #9ca3af;  /* Secondary Text */
+  --bw-dark-200:   #cbd5e1;  /* Sub-heading */
+  --bw-dark-100:   #f1f5f9;  /* Heading Text */
+  --bw-dark-0:     #ffffff;  /* Pure White */
+
+  /* ---------- 2. Semantic Roles (Consumed by all components) ---------- */
+  --c-bg:                 var(--bw-dark-900);
+  --c-surface:            var(--bw-dark-850);
+  --c-surface-dim:        var(--bw-dark-800);
+  --c-surface-stage:      var(--bw-dark-950);
+  --c-outline:            rgba(255, 255, 255, 0.12);
+  --c-outline-variant:    rgba(255, 255, 255, 0.06);
+
+  --c-text:               var(--bw-dark-100);
+  --c-text-2:             var(--bw-dark-300);
+  --c-text-3:             var(--bw-dark-400);
+  --c-text-disabled:      var(--bw-dark-500);
+
+  --c-primary:            var(--bw-amber-600);
+  --c-primary-hover:      var(--bw-amber-500);
+  --c-on-primary:         #ffffff;
+  --c-primary-container:  rgba(255, 107, 0, 0.16);
+  --c-on-primary-container: #ff9d5c;
+
+  --c-danger:             var(--bw-red-500);
+  --c-danger-container:   rgba(239, 68, 68, 0.16);
+  --c-on-danger-container: #fca5a5;
+
+  --c-success:            var(--bw-green-500);
+  --c-success-container:  rgba(16, 185, 129, 0.16);
+  --c-on-success-container: #6ee7b7;
+
+  --c-warning:            var(--bw-yellow-400);
+  --c-warning-container:  rgba(250, 204, 21, 0.16);
+  --c-on-warning-container: #fde047;
+
+  --c-brand-aubergine:    var(--bw-purple-600);
+  --c-brand-cyan:         var(--bw-cyan-500);
+
+  --c-focus-ring:         rgba(255, 107, 0, 0.45);
+  --c-state-hover:        rgba(255, 255, 255, 0.06);
+  --c-state-pressed:      rgba(255, 255, 255, 0.10);
+  --c-scrim:              rgba(0, 0, 0, 0.78);
+
+  /* ---------- 3. Timeline Roles ---------- */
+  --tl-bg:                #10131a;
+  --tl-kept:              rgba(16, 185, 129, 0.90);  /* Emerald Voice */
+  --tl-kept-border:       #059669;
+  --tl-removed:           rgba(239, 68, 68, 0.14);
+  --tl-removed-line:      rgba(239, 68, 68, 0.38);
+  --tl-headline:          var(--bw-yellow-400);
+  --tl-headline-bg:       rgba(250, 204, 21, 0.14);
+  --tl-selection:         rgba(255, 107, 0, 0.24);
+  --tl-selection-edge:    var(--bw-amber-500);
+  --tl-playhead:          var(--bw-cyan-500);        /* Laser Cyan */
+  --tl-waveform:          rgba(255, 255, 255, 0.28);
+
+  /* ---------- 4. Status Mapping ---------- */
+  --st-unprocessed:       #64748b;
+  --st-analyzing:         #00e5ff;
+  --st-ready:             #facc15;
+  --st-approved:          #10b981;
+  --st-rendering:         #ff6b00;
+  --st-completed:         #8b5cf6;
+  --st-error:             #ef4444;
+
+  /* ---------- 5. Typography ---------- */
+  --font-ui:   "Google Sans", "Kanit", "Noto Sans Thai", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-thai: "Kanit", "Prompt", "Noto Sans Thai", sans-serif;
+  --font-mono: "Roboto Mono", "Cascadia Code", Consolas, monospace;
+
+  --t-display:  600 28px/36px var(--font-ui);
+  --t-title-l:  600 22px/28px var(--font-ui);
+  --t-title-m:  600 16px/24px var(--font-ui);
+  --t-title-s:  500 14px/20px var(--font-ui);
+  --t-body-l:   400 16px/24px var(--font-ui);
+  --t-body-m:   400 14px/20px var(--font-ui);
+  --t-body-s:   400 12px/16px var(--font-ui);
+  --t-label-l:  500 14px/20px var(--font-ui);
+  --t-label-m:  500 12px/16px var(--font-ui);
+  --t-label-s:  500 11px/16px var(--font-ui);
+  --t-mono-m:   500 13px/20px var(--font-mono);
+  --t-mono-s:   500 11px/16px var(--font-mono);
+
+  /* ---------- 6. Spacing ---------- */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 24px; --sp-8: 32px; --sp-10: 40px; --sp-12: 48px;
+
+  /* ---------- 7. Radius ---------- */
+  --r-xs: 4px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-full: 999px;
+
+  /* ---------- 8. Elevation & Glows ---------- */
+  --e-0: none;
+  --e-1: 0 2px 4px rgba(0,0,0,.40), 0 1px 2px rgba(0,0,0,.30);
+  --e-2: 0 4px 12px rgba(0,0,0,.50), 0 1px 3px rgba(0,0,0,.35);
+  --e-3: 0 8px 24px rgba(0,0,0,.65), 0 2px 6px rgba(0,0,0,.45);
+  --e-4: 0 16px 36px rgba(0,0,0,.80);
+  --glow-primary: 0 0 16px rgba(255, 107, 0, 0.45);
+  --glow-cyan:    0 0 16px rgba(0, 240, 255, 0.35);
+
+  /* ---------- 9. Motion ---------- */
+  --ease-standard:   cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.3, 0, 0, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 300ms;
+
+  /* ---------- 10. Layout ---------- */
+  --topbar-h:      58px;
+  --rail-w:        82px;
+  --filmstrip-w:   256px;
+  --inspector-w:   390px;
+  --timeline-h:    232px;
+  --control-h:     40px;
+  --control-h-sm:  32px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 0ms; --dur-base: 0ms; --dur-slow: 0ms; }
+}

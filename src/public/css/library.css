@@ -1,0 +1,326 @@
+/* ==========================================================================
+   BWCut — library.css
+   Library (คลังคลิป) View Layout, Toolbar, Grid, Clip Cards, Contextual Bar
+   ========================================================================== */
+
+#view-library {
+  flex-direction: column;
+  background-color: var(--c-bg);
+  position: relative;
+}
+
+/* 1. Normal Library Toolbar */
+.lib-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-4) var(--sp-6);
+  min-height: 72px;
+  flex-wrap: wrap;
+}
+
+.lib-toolbar .title {
+  font: var(--t-title-l);
+  color: var(--c-text);
+  margin-right: var(--sp-4);
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  height: 40px;
+  padding: 0 var(--sp-3);
+  border-radius: var(--r-full);
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-outline);
+  width: 240px;
+  margin-left: auto;
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+}
+
+.search:focus-within {
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 3px var(--c-focus-ring);
+}
+
+.search input {
+  border: none;
+  outline: none;
+  background: none;
+  flex: 1;
+  font: var(--t-body-m);
+  color: var(--c-text);
+}
+
+/* 2. Contextual Action Bar (เมื่อมีการเลือก ≥ 1 คลิป) */
+.ctx-bar {
+  display: none;
+  align-items: center;
+  gap: var(--sp-2);
+  margin: var(--sp-4) var(--sp-6) 0;
+  padding: 0 var(--sp-3) 0 var(--sp-2);
+  height: 56px;
+  border-radius: var(--r-lg);
+  background-color: var(--c-primary-container);
+  color: var(--c-on-primary-container);
+  box-shadow: var(--e-1);
+  animation: slideDown var(--dur-fast) var(--ease-standard);
+}
+
+.ctx-bar .count {
+  font: var(--t-title-s);
+  color: var(--c-on-primary-container);
+  margin-right: auto;
+  padding-left: var(--sp-2);
+}
+
+.ctx-bar .btn-text {
+  color: var(--c-on-primary-container);
+}
+
+.ctx-bar .btn-text:hover {
+  background-color: rgba(23, 78, 166, 0.12);
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Mode toggles via class on container */
+.selecting .lib-toolbar {
+  display: none;
+}
+
+.selecting .ctx-bar {
+  display: flex;
+}
+
+/* 3. Grid Container */
+.grid-wrap {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--sp-3) var(--sp-6) 120px;
+}
+
+.clip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--sp-5);
+}
+
+/* 4. Clip Card */
+.card {
+  background-color: var(--c-surface);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow var(--dur-base) var(--ease-standard),
+              transform var(--dur-base) var(--ease-standard),
+              border-color var(--dur-base);
+  border: 1px solid var(--c-outline-variant);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  box-shadow: var(--e-2);
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+
+.card.sel {
+  outline: 2px solid var(--c-primary);
+  outline-offset: -2px;
+}
+
+.card-media {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  background-color: var(--g-grey-800);
+  overflow: hidden;
+}
+
+.card-media img,
+.card-media .ph {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-media .ph {
+  background: linear-gradient(160deg, #3c4043 0%, #202124 100%);
+}
+
+.card-check {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--dur-fast), background-color var(--dur-fast);
+  color: var(--c-text-2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  z-index: 5;
+}
+
+.card:hover .card-check,
+.selecting .card-check {
+  opacity: 1;
+}
+
+.card.sel .card-check {
+  background-color: var(--c-primary);
+  color: #ffffff;
+  opacity: 1;
+}
+
+.card-dur {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font: var(--t-mono-s);
+  color: #ffffff;
+  background-color: rgba(32, 33, 36, 0.76);
+  padding: 2px 6px;
+  border-radius: var(--r-xs);
+  backdrop-filter: blur(2px);
+  z-index: 4;
+}
+
+/* Headline Preview inside Card */
+.card-hl {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 15%;
+  text-align: center;
+  font: 700 13px/1.25 "Prompt-Bold", "Prompt", sans-serif;
+  color: #FFE600;
+  text-shadow: 0 0 3px #000, 0 0 3px #000, 0 0 2px #000;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.card-hl em {
+  display: block;
+  color: #ffffff;
+  font-style: normal;
+}
+
+/* Card Body & Info */
+.card-body {
+  padding: var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background-color: var(--c-surface);
+}
+
+.card-name {
+  font: var(--t-title-s);
+  color: var(--c-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-meta .trim {
+  font: var(--t-mono-s);
+  color: var(--c-text-3);
+}
+
+/* Indeterminate linear progress on analyzing card */
+.card.is-analyzing .card-media::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--c-primary), transparent);
+  background-size: 200% 100%;
+  animation: indeterminate 1.5s infinite linear;
+}
+
+@keyframes indeterminate {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* 5. Floating Action Button (FAB) */
+.fab {
+  position: fixed;
+  right: var(--sp-6);
+  bottom: var(--sp-6);
+  height: 56px;
+  padding: 0 var(--sp-5) 0 var(--sp-4);
+  border-radius: var(--r-lg);
+  background-color: var(--c-primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font: var(--t-label-l);
+  box-shadow: var(--e-3);
+  border: none;
+  cursor: pointer;
+  z-index: 80;
+  transition: background-color var(--dur-base), box-shadow var(--dur-base), transform var(--dur-fast);
+}
+
+.fab:hover {
+  background-color: var(--c-primary-hover);
+  box-shadow: var(--e-4);
+  transform: translateY(-2px);
+}
+
+.fab:active {
+  transform: translateY(0);
+}
+
+.fab .ms {
+  font-size: 24px;
+}
+
+/* 6. Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-12) var(--sp-6);
+  margin: auto;
+  text-align: center;
+  gap: var(--sp-3);
+}
+
+.empty-state .empty-icon {
+  font-size: 64px;
+  color: var(--g-grey-400);
+}
+
+.empty-state h3 {
+  font: var(--t-title-m);
+  color: var(--c-text);
+}
+
+.empty-state p {
+  font: var(--t-body-m);
+  color: var(--c-text-2);
+  max-width: 420px;
+}

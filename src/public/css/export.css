@@ -1,0 +1,227 @@
+/* ==========================================================================
+   BWCut — export.css
+   Export (เรนเดอร์) Dashboard, Progress Card, Queue Rows, Terminal Log, Settings Modal
+   ========================================================================== */
+
+#view-export {
+  flex-direction: column;
+  overflow-y: auto;
+  padding: var(--sp-6);
+  gap: var(--sp-5);
+  align-items: center;
+  background-color: var(--c-bg);
+}
+
+.export-wrap {
+  width: 100%;
+  max-width: 1040px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  padding-bottom: 60px;
+}
+
+/* Card Panel Container */
+.card-panel {
+  background-color: var(--c-surface);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--c-outline-variant);
+  padding: var(--sp-6);
+  box-shadow: var(--e-0);
+}
+
+/* 1. Progress Summary Card */
+.prog-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--sp-5);
+}
+
+.prog-head h2 {
+  font: var(--t-title-l);
+  color: var(--c-text);
+}
+
+.prog-head p {
+  font: var(--t-body-m);
+  color: var(--c-text-2);
+  margin-top: 4px;
+}
+
+/* Linear Progress Bar */
+.linear {
+  height: 8px;
+  border-radius: var(--r-full);
+  background-color: var(--g-blue-100);
+  overflow: hidden;
+  position: relative;
+}
+
+.linear i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background-color: var(--c-primary);
+  border-radius: var(--r-full);
+  transition: width 200ms ease;
+}
+
+/* 4 KPI Metrics */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-4);
+  margin-top: var(--sp-5);
+}
+
+.kpi {
+  background-color: var(--c-surface-dim);
+  border-radius: var(--r-md);
+  padding: var(--sp-3) var(--sp-4);
+}
+
+.kpi small {
+  font: var(--t-label-m);
+  color: var(--c-text-3);
+  display: block;
+}
+
+.kpi b {
+  display: block;
+  font: 500 24px/32px var(--font-ui);
+  color: var(--c-text);
+  margin-top: 2px;
+}
+
+/* 2. Queue Table Rows */
+.q-row {
+  display: grid;
+  grid-template-columns: 32px 1fr 160px 140px 80px;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--c-outline-variant);
+}
+
+.q-row:last-child {
+  border-bottom: none;
+}
+
+.q-row .n {
+  font: var(--t-mono-s);
+  color: var(--c-text-3);
+}
+
+.q-row .linear {
+  height: 6px;
+}
+
+.q-row .sp {
+  font: var(--t-mono-s);
+  color: var(--c-text-3);
+  text-align: right;
+}
+
+/* 3. Realtime Logs Box */
+.log {
+  background-color: var(--c-surface-dim);
+  border-radius: var(--r-md);
+  padding: var(--sp-3) var(--sp-4);
+  font: 400 12px/20px var(--font-mono);
+  color: var(--c-text-2);
+  max-height: 240px;
+  overflow-y: auto;
+  border: 1px solid var(--c-outline-variant);
+  user-select: text;
+}
+
+.log .ok {
+  color: var(--g-green-800);
+  font-weight: 500;
+}
+
+.log .err {
+  color: var(--g-red-700);
+  font-weight: 500;
+}
+
+/* 4. Settings Dialog Specifics */
+.dialog.settings-dialog {
+  width: 880px;
+  max-width: calc(100vw - 48px);
+  height: min(680px, calc(100vh - 48px));
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: 64px 1fr 72px;
+}
+
+.dialog-head {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--sp-4) 0 var(--sp-6);
+  font: var(--t-title-l);
+  border-bottom: 1px solid var(--c-outline-variant);
+}
+
+.dialog-nav {
+  padding: var(--sp-3) var(--sp-2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-right: 1px solid var(--c-outline-variant);
+  background-color: var(--c-surface);
+}
+
+.dialog-nav button {
+  height: 44px;
+  border: none;
+  background: none;
+  border-radius: var(--r-full);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 0 var(--sp-4);
+  font: var(--t-label-l);
+  color: var(--c-text-2);
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+  transition: background-color var(--dur-fast);
+}
+
+.dialog-nav button:hover {
+  background-color: var(--c-state-hover);
+}
+
+.dialog-nav button.on {
+  background-color: var(--c-primary-container);
+  color: var(--c-on-primary-container);
+  font-weight: 500;
+}
+
+.dialog-nav button.on .ms {
+  font-variation-settings: "FILL" 1;
+}
+
+.dialog-body {
+  overflow-y: auto;
+  padding: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  background-color: var(--c-surface);
+}
+
+.dialog-foot {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sp-2);
+  align-items: center;
+  padding: 0 var(--sp-6);
+  border-top: 1px solid var(--c-outline-variant);
+  background-color: var(--c-surface);
+}

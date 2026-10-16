@@ -1,0 +1,51 @@
+# Node modules & dependencies
+node_modules/
+.npm/
+
+# Environment & Secrets (NEVER COMMIT SENSITIVE KEYS)
+.env
+.env.local
+.env.*.local
+
+# Build artifacts & caches
+dist/
+build/
+*.tsbuildinfo
+
+# Application runtime data & temp
+temp/
+temp/*
+!temp/.gitkeep
+rendered/
+rendered/*
+!rendered/.gitkeep
+งาน/
+data/
+
+# License & Device-specific data
+license.json
+เครื่องนี้.txt
+update_channel.json
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Large binaries (downloaded via installer or winget)
+bin/ffmpeg.exe
+bin/ffprobe.exe
+design.7z
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -1,0 +1,146 @@
+/* ==========================================================================
+   BWCut — base.css
+   Reset, Base Typography, Scrollbar, Material Symbols @font-face
+   ========================================================================== */
+
+/* 1. CSS Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font: var(--t-body-m);
+  color: var(--c-text);
+  background-color: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  text-rendering: optimizeLegibility;
+  user-select: none;
+}
+
+/* 2. Text and interactive element defaults */
+input, button, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+input, textarea {
+  user-select: text;
+}
+
+a {
+  color: var(--c-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 3. Keyboard Shortcut badge */
+kbd {
+  font: var(--t-mono-s);
+  padding: 1px 6px;
+  border-radius: var(--r-xs);
+  background: var(--c-surface-dim);
+  border: 1px solid var(--c-outline);
+  color: var(--c-text-2);
+  display: inline-block;
+  line-height: 1.4;
+  vertical-align: middle;
+}
+
+/* 4. Scrollbar (Google Style Clean) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--g-grey-400);
+  border-radius: var(--r-full);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--g-grey-600);
+  background-clip: content-box;
+}
+
+/* 5. Material Symbols Rounded Font Setup (Local first + Offline safe) */
+@font-face {
+  font-family: 'Material Symbols Rounded';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: block;
+  src: url('/vendor/material-symbols-rounded.ttf') format('truetype');
+}
+
+.ms {
+  font-family: 'Material Symbols Rounded', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  display: inline-block;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.ms.fill {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+}
+
+.ms.sm {
+  font-size: 18px;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 18;
+}
+
+.ms.sm.fill {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 18;
+}
+
+.ms.lg {
+  font-size: 24px;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.ms.lg.fill {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* 6. Utility Helper Classes */
+.mono {
+  font-family: var(--font-mono);
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hidden {
+  display: none !important;
+}
