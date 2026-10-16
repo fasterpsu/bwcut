@@ -1,4 +1,4 @@
-# ✂️ คู่มือการติดตั้งและใช้งาน BWCut Studio (ฉบับสมบูรณ์)
+# ✂️ คู่มือการติดตั้งและใช้งาน BWCut Studio v1.0.1 (ฉบับสมบูรณ์)
 **โดย fasterpsu (BW OS) — 100% Free & Open-Source AI Video Editor**
 
 ---

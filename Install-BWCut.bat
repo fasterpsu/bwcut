@@ -124,7 +124,7 @@ Write-Host "${cPrimary}       ██╔══██╗ ██║███╗█�
 Write-Host "${cOrange}       ██████╔╝ ╚███╔███╔╝  ╚██████╗ ╚██████╔╝    ██║   ${cReset}"
 Write-Host "${cOrange}       ╚═════╝   ╚══╝╚══╝    ╚═════╝  ╚═════╝     ╚═╝   ${cReset}"
 Write-Host ""
-Write-Host "       ${cCyan}✂  BWCut Studio  —  Pro AI Video Workstation${cReset}"
+Write-Host "       ${cCyan}✂  BWCut Studio v1.0.1  —  Pro AI Video Workstation${cReset}"
 Write-Host "       ${cSilver}✦ fasterpsu (${cPurple}BW OS${cSilver})  ·  100% Free & Open-Source Video Editor ✦${cReset}"
 Write-Host "${cPrimary}  ════════════════════════════════════════════════════════════════════════${cReset}"
 

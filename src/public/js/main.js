@@ -207,6 +207,11 @@ async function loadSystemStatus() {
       systemSettings = sys.settings || {};
       populateSettingsModal(systemSettings);
 
+      if (sys.version) {
+        const verEl = document.getElementById("lblCurrentVersion");
+        if (verEl) verEl.textContent = `v${sys.version}`;
+      }
+
       const savedFolder = localStorage.getItem("bwcut_last_folder");
       const folderPath = savedFolder || sys.currentFolderPath || "";
       const input = document.getElementById("folderInput");
